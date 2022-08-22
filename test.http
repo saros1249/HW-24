@@ -3,8 +3,8 @@ Content-Type: application/json
 
 {
   "file_name": "apache_logs.txt",
-  "cmd1": "filter",
-  "value1": "POST",
-  "cmd2": "map",
-  "value2": "0"
+  "cmd1": "regex",
+  "value1": "images/\\w+\\.png",
+  "cmd2": "filter",
+  "value2": "83.149.9.216"
 }

@@ -1,6 +1,6 @@
 import os
 import re
-from typing import Iterator, Iterable
+from typing import Iterator, Any
 
 from flask import Flask, request, jsonify
 from werkzeug.exceptions import BadRequest
@@ -11,7 +11,7 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR = os.path.join(BASE_DIR, "data")
 
 
-def do_cmd(cmd: str, value: str, it: Iterator) -> Iterable:
+def do_cmd(cmd: str, value: Any, it: Iterator) -> Iterator:
     """
     Обрабатывает запрос при помощи Query.
     :param cmd: команда query
@@ -23,7 +23,7 @@ def do_cmd(cmd: str, value: str, it: Iterator) -> Iterable:
     if cmd == 'filter':
         cmd_res = filter(lambda record: value in record, it)
     elif cmd == 'map':
-        col_num = int(value)
+        col_num: int = int(value)
         if col_num == 0:
             cmd_res = map(lambda record: record.split()[col_num], it)
         elif col_num == 1:
